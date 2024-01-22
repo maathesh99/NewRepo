@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Long PROMPTs Splitter</title>
+    <!-- Update the path to your CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <body>
+    
+
+    <!-- Update the paths to your favicon and other static files -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+    <link rel="manifest" href="/static/site.webmanifest">
+    <link rel="mask-icon" href="/static/1.png" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Free Chatgpt prompt splitter online</title>
+    <meta name="description" content="Divide your Free online Tool to split chatgpt prompts ">
+    <meta name="keywords" content="chat gpt prompt splitter,chatgpt prompts splitter,chatgpt splitter,gpt splitter">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Long PROMPTs Splitter">
+    <meta property="og:description" content="Tool for safely processing chunks of up to 15,000 characters per request">
+    <!-- Update the path to your dynamic og:image tag -->
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="header-logo">
+            <a href="/"><img src="{{ url_for('static', filename='logo2.png') }}" alt="Logo" class="logo"/></a>
+        </div><br>
+        <div class="header-text">
+            <h1>ChatGPT PROMPTs Splitter Online</h1></br>
+        </div>
+    </div>
+    <!-- Display visit count from Flask -->
+    <form action="/" method="post">
+        <div class="form-group"> 
+            <label for="prompt">Enter the long prompt to be splitted</label>
+            <!-- Display prompt from Flask -->
+            <textarea class="form-control" id="prompt" name="prompt" rows="10">{{ prompt }}</textarea>
+            <div class="char-count-container">
+                <!-- Display character count from Flask -->
+                <span id="prompt-char-count">{{ prompt|length }}</span> characters
+            </div>
+        </div>
+        <label for="split_length">Max chars length for each splitted part</label>
+        <select name="preset" id="preset" onchange="toggleCustomLength(this)" required>
+            <option value="15000" {% if split_length == 15000 or split_length is none or split_length == '' %}selected{% endif %}>General max safe chunk for ChatGPT (15,000)</option>
+            <option value="custom" {% if split_length != 8000 and split_length != 15000 and split_length != '' and split_length is not none %}selected{% endif %}>Enter Custom value</option>
+        </select>
+        <input type="number" name="split_length" class="custom-length" id="split_length" min="1" required value="{{ split_length if split_length is not none and split_length != '' else 15000 }}" {% if split_length == 8000 or split_length == 15000 or split_length is none or split_length == '' %}style="display: none;"{% endif %}>
+        <br> </br><button type="submit" id="split-btn" class="{% if btn_disabled %}disabled{% endif %}"{% if btn_disabled %} disabled{% endif%}>Enter a prompt</button>
+    </form>
+    {% if file_data %}
+    <div class="instructions">
+        <h3>Instructions</h3>
+        <pre id="instructions">The total length of the content that I want to send you is too large to send in only one piece.
+        
+For sending you that content, I will follow this rule:
+        
+[START PART 1/{{ num_parts}}]
+this is the content of the part 1 out of {{ num_parts}} in total
+[END PART 1/{{ num_parts }}]
+        
+Then you just answer: "Received part 1/{{ num_parts}}"
+        
+And when I tell you "ALL PARTS SENT", then you can continue processing the data and answering my requests.</pre>
+            <help>Here are your prompts divided into desired part, Go ahead and use in chatgpt</help><br>
+        <button type="button" class="copy-btn" id="copy-instructions-btn" onclick="copyInstructions()">Copy Instructions (first message to send)</button>
+    </div>
+    <div class="buttons-container">
+        {% for file in file_data %}
+        {% set partNumber = file.name[6:9]|int %}
+        {% set totalParts = file.name[13:16]|int %}
+        <button class="copy-btns" data-content="{{ file.content }}" onclick="copyToClipboard(this)">Copy part {{ partNumber }}/{{ totalParts }} to clipboard</button>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <h1>Check out this ChatGPT prompt Splitter</h1>
+    <h2>Enhance your ChatGPT experience with prompt organization!</h2>
+    <div id="box3">
+        <div class="middle-column">
+            <div id="box5"><br>
+                <h3><i class="fa fa-star" aria-hidden="true">&nbsp;Prompt Splitting:</i></h3><br>
+                <li>Divide your prompts into well-organized segments.</li>
+                <li>Improve the coherence and relevance of ChatGPT responses.</li>
+            </div>
+            <div id="box6">
+                <h3><i class="fa fa-star" aria-hidden="true">&nbsp;Customization</i></h3><br>
+                <li>Tailor the tool to your specific needs.
+                    Increase the effectiveness of your interactions with ChatGPT</li>       
+            </div>
+            <div id="box7">
+                <h3><i class="fa fa-star" aria-hidden="true">&nbsp;Efficiency Boost</i></h3><br>
+                <li>Save time by automating the prompt-splitting process.
+
+                    Improve the coherence and relevance of ChatGPT responses.</li>
+        </div>
+
+
+    </div>
+</div>
+    
+
+<body>
+    <div class="footer-basic">
+        <footer>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="#">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            y 
+        </footer>
+    </div>
+    
+</body>
+
+<script type="text/javascript" src="{{ url_for('static', filename='code.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
