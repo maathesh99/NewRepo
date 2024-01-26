@@ -58,6 +58,7 @@
         <br> </br><button type="submit" id="split-btn" class="{% if btn_disabled %}disabled{% endif %}"{% if btn_disabled %} disabled{% endif%}>Enter a prompt</button>
     </form>
     {% if file_data %}
+    
     <div class="instructions">
         <h3>Instructions</h3>
         <pre id="instructions">The total length of the content that I want to send you is too large to send in only one piece.
@@ -82,7 +83,9 @@ And when I tell you "ALL PARTS SENT", then you can continue processing the data 
         {% endfor %}
     </div>
     {% endif %}
-    <h1>Check out this ChatGPT prompt Splitter</h1>
+    <h2>Check out this ChatGPT prompt Splitter</h1>
+    <video width="320" height="240" controls autoplay> -->
+       <source src="{{ url_for('static', filename='Video.mp4') }}" type="video/mp4"> </video>
     <h2>Enhance your ChatGPT experience with prompt organization!</h2>
     <div id="box3">
         <div class="middle-column">
@@ -125,8 +128,8 @@ And when I tell you "ALL PARTS SENT", then you can continue processing the data 
 </body>
 
 <script type="text/javascript" src="{{ url_for('static', filename='code.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script> -->
 
 
 </body>
