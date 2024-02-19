@@ -68,5 +68,8 @@ def split_prompt(text, split_length):
 # def generate_random_hash(length):
 #     return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length))
 
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)),debug=True)
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)),debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
