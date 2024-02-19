@@ -8,6 +8,7 @@ import string
 
 # Load environment variables from .env file
 # load_dotenv()
+port = int(os.environ.get('PORT', 5000))
 
 app = Flask(__name__)
 app._static_folder = 'templates/static'
